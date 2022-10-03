@@ -70,3 +70,27 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+// Codigo custom
+// const version= 'Version de carrito de compra 3'
+
+
+// Metodo para identificar cuando se instale una nueva version de service-wroker
+
+// self.addEventListener('install',(event)=>{
+// console.log(`Instalando nuevo worker sin activar:  ${version}`)
+// })
+
+// self.addEventListener('activate',(event)=>{
+//   console.log(`Activando el worker:  ${version}`)
+// })
+
+//Una notificacion push atravez del navegador
+self.addEventListener('install',(event)=>{
+  console.log('Instalando una nueva version 2.0 ..')
+  self.registration.showNotification('Nueva  version adquirida',{body:'Instala Ahora mismo'})
+})
+
+self.addEventListener('push',(event)=>{
+  self.registration.showNotification('Nueva notificacion',{body:'Como estas?'})
+})
+

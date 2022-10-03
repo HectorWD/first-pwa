@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Carlist from './components/carList/Carlist';
+import { withServiceWorkerUpdater } from '@3m1/service-worker-updater'
 
-function App() {
+
+function App(props) {
+  const { newServiceWorkerDetected, onLoadNewServiceWorkerAccept } = props;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="App">
+        <Carlist/>
+      </div>
+      {newServiceWorkerDetected ? (
+                <div style={{ backgroundColor: 'red', width: '80vw', margin: 'auto', padding: '10px' }}>
+                    <h3>Nueva Actualizacion !</h3>
+                    <button onClick={onLoadNewServiceWorkerAccept}>Actualizar ahora</button>
+                </div>
+            ) : null}
     </div>
   );
 }
 
-export default App;
+export default withServiceWorkerUpdater(App);
